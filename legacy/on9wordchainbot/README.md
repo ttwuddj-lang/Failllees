@@ -7,8 +7,8 @@ On9 Word Chain Bot hosts games of word chain in Telegram groups.
 
 ### Telegram Links
 - [On9 Word Chain Bot](https://t.me/on9wordchainbot) (Live Version)
-- [Official Group](https://t.me/+T30aTNo-2Xx2kc52)
-- [Word Additions Channel](https://t.me/on9wcwa)
+- [Official Group](https://t.me/jp_network)
+- [Word Additions Channel](https://t.me/jp_network)
 
 ## Installation
 
