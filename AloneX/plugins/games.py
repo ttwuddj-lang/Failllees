@@ -30,16 +30,18 @@ def _key(m):
 @app.on_message(filters.command("games"))
 async def games(_, m: types.Message):
     await m.reply_text(
-        "🎮 **Games available**\n\n"
-        "/quiz — Quick quiz\n"
-        "/trivia — Trivia question\n"
-        "/ttt — Tic-Tac-Toe\n"
-        "/rps — Rock Paper Scissors\n"
-        "/number — Number guessing\n"
-        "/hangman — Hangman\n"
-        "/memory — Memory sequence\n"
-        "/dice — Roll a die\n"
-        "/coin — Flip a coin\n\n"
+        "🎮 **Unified Games**\n\n"
+        "🧠 `/quiz` / `/trivia` — Quiz\n"
+        "❌ `/ttt` — Tic-Tac-Toe\n"
+        "✊ `/rps rock` — Rock Paper Scissors\n"
+        "🔢 `/number` — Number Guessing\n"
+        "🔤 `/hangman` — Hangman\n"
+        "🧠 `/memory` — Memory\n"
+        "🎲 `/dice` — Dice\n"
+        "🪙 `/coin` — Coin Toss\n"
+        "🃏 `/uno` — UNO\n"
+        "🔗 `/wordchain` — Word Chain\n"
+        "🔤 `/wordseek` — WordSeek\n\n"
         "Use `/gamehelp` for examples."
     )
 

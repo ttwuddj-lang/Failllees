@@ -5,6 +5,7 @@
 import os
 
 from groq import Groq
+import asyncio
 from pyrogram import filters, types
 
 from AloneX import app
@@ -27,7 +28,7 @@ async def _reply_ai(message: types.Message, prompt: str):
         )
 
     try:
-        response = _client.chat.completions.create(
+        response = await asyncio.to_thread(_client.chat.completions.create,
             model="llama-3.3-70b-versatile",
             messages=[
                 {"role": "system", "content": _SYSTEM},
@@ -62,6 +63,8 @@ async def ai_text(_, message: types.Message):
             return
 
     text = message.text.strip()
+    if not text.startswith(("/ai ", "/ask ")):
+        return
     if not text:
         return
     await _reply_ai(message, text)

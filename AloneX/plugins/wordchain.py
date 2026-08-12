@@ -135,6 +135,8 @@ async def wc_start(_, m: types.Message):
     g["last_word"]=start
     g["required"]=start[-1]
     g["used"]={start}
+    g["deadline"]=asyncio.get_running_loop().time()+40
+    g["turn_task"]=asyncio.create_task(_wc_timeout(k))
     await m.reply_text(
         "🔗 **Word Chain started!**\n\n"
         f"Starting word: **{start}**\n"
@@ -216,11 +218,3 @@ async def wc_word_answer(_, m: types.Message):
         f"✅ **{word}** accepted! +{len(word)} points.\n\n{_wc_render(g)}"
     )
 
-@app.on_message(filters.command("games"))
-async def wc_games_hint(_, m: types.Message):
-    # This is intentionally a separate handler; Telegram will deliver both
-    # /games handlers and the main games menu remains available.
-    await m.reply_text(
-        "🔗 **Word Chain:** `/wordchain` → `/wcjoin` → `/wcstart`\n"
-        "During the game, send the next valid word directly."
-    )
