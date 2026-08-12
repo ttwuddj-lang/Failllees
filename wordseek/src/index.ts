@@ -1,55 +1,53 @@
-import { autoRetry } from "@grammyjs/auto-retry";
-import { run, sequentialize } from "@grammyjs/runner";
+import { Composer } from "grammy";
 
-import { bot } from "./config/bot";
-import { commands } from "./commands";
-import { captchaQueue } from "./queues/captcha-queue";
-import { errorHandler } from "./handlers/error-handler";
-import { onMessageHander } from "./handlers/on-message";
-import { CommandsHelper } from "./util/commands-helper";
-import { resumeBroadcast } from "./util/resume-broadcast";
-import { callbackQueryHandler } from "./handlers/callback-query";
-import { handleBannedUsers } from "./handlers/handle-banned-users";
-import { onBotAddedInChat } from "./handlers/on-bot-added-in-chat";
-import { topicEditedHandler } from "./handlers/topic-edited-handler";
-import { trackMessagesHandler } from "./handlers/track-messages-handler";
-import { userAndChatSyncHandler } from "./handlers/user-and-chat-sync-handler";
-import {
-  dailyWordleCron,
-  ensureDailyWordExists,
-} from "./services/daily-wordle-cron";
+import { idCommand } from "./id";
+import { helpCommand } from "./help";
+import { scoreCommand } from "./score";
+import { startCommand } from "./start";
+import { statsCommand } from "./stats";
+import { trackCommand } from "./track";
+import { banCommand } from "./ban-user";
+import { captchaCommand } from "./captcha";
+import { endGameCommand } from "./end-game";
+import { myScoreCommand } from "./my-score";
+import { newGameCommand } from "./new-game";
+import { unbanCommand } from "./unban-user";
+import { dailyWordleCommand } from "./daily";
+import { seekAuthCommand } from "./seekauth";
+import { transferCommand } from "./transfer";
+import { broadcastCommand } from "./broadcast";
+import { startMatchCommand } from "./startmatch";
+import { leaderboardCommand } from "./leaderboard";
+import { allowOnlyLenCommand } from "./allowonlylen";
+import { setGameTopicCommand } from "./setgametopic";
+import { recreateTopicCommand } from "./recreatetopic";
+import { unsetGameTopicCommand } from "./unsetgametopic";
 
-bot.api.config.use(autoRetry());
-bot.use(userAndChatSyncHandler);
-bot.use(topicEditedHandler);
-bot.use(trackMessagesHandler);
+const composer = new Composer();
 
-bot.use(
-  sequentialize((ctx) => {
-    if (ctx.callbackQuery) return undefined;
-    if (ctx.chat?.type === "private") return undefined;
-
-    return ctx.chatId?.toString() || ctx.from?.id.toString();
-  }),
+composer.use(
+  startCommand,
+  helpCommand,
+  newGameCommand,
+  endGameCommand,
+  myScoreCommand,
+  statsCommand,
+  banCommand,
+  unbanCommand,
+  leaderboardCommand,
+  scoreCommand,
+  seekAuthCommand,
+  startMatchCommand,
+  setGameTopicCommand,
+  unsetGameTopicCommand,
+  trackCommand,
+  transferCommand,
+  broadcastCommand,
+  dailyWordleCommand,
+  idCommand,
+  allowOnlyLenCommand,
+  recreateTopicCommand,
+  captchaCommand,
 );
 
-bot.use(handleBannedUsers);
-
-bot.use(commands);
-bot.use(callbackQueryHandler);
-bot.use(onMessageHander);
-bot.use(onBotAddedInChat);
-
-bot.catch(errorHandler);
-dailyWordleCron.start();
-await ensureDailyWordExists();
-
-await bot.api.deleteWebhook({ drop_pending_updates: true });
-
-// Resume any pending broadcast before starting the bot
-
-run(bot);
-console.log("Bot started");
-
-await CommandsHelper.setCommands();
-await resumeBroadcast();
+export const commands = composer;
