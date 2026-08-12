@@ -6,23 +6,23 @@ load_dotenv()
 
 class Config:
     def __init__(self):
-        self.API_ID = int(getenv("API_ID", "17596251"))
-        self.API_HASH = getenv("API_HASH", "e58343b4c0193e293e391daf97603fcd")
+        self.API_ID = int(getenv("API_ID", "0"))
+        self.API_HASH = getenv("API_HASH", "")
 
-        self.BOT_TOKEN = getenv("BOT_TOKEN", "Apna Bot Token")
-        self.MONGO_URL = getenv("MONGO_URL", "Apna Mongo Db Dalo")
+        self.BOT_TOKEN = getenv("BOT_TOKEN", "")
+        self.MONGO_URL = getenv("MONGO_URL", "")
         # Persistent DB for unified bot users, settings and game stats.
         self.UNIFIED_DATABASE_URL = getenv("UNIFIED_DATABASE_URL", getenv("DATABASE_URL", ""))
 
-        self.LOGGER_ID = int(getenv("LOGGER_ID", "Apna Log Group Id Dalo"))
-        self.OWNER_ID = int(getenv("OWNER_ID", "Owner I'd dalo"))
+        self.LOGGER_ID = int(getenv("LOGGER_ID", "0"))
+        self.OWNER_ID = int(getenv("OWNER_ID", "0"))
         
-        self.SESSION1 = getenv("SESSION", "Apna String Dalo")
+        self.SESSION1 = getenv("SESSION", "")
         self.SESSION2 = getenv("SESSION2", None)
         self.SESSION3 = getenv("SESSION3", None)
 
-        self.SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/AloneUpdates")
-        self.SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/AloneBotSupport")
+        self.SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/jp_network")
+        self.SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/jp_network")
 
         self.AUTO_END: bool = getenv("AUTO_END", False)
         self.AUTO_LEAVE: bool = getenv("AUTO_LEAVE", False)
