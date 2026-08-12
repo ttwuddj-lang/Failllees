@@ -122,3 +122,8 @@ After a failed update, restore if necessary:
 ```
 
 **Note:** active in-memory game rounds (for example an UNO round currently being played) still reset if the process crashes/restarts. Persistent user/settings/stats data survives. Making every active game resumable would require a second persistence pass for each game's state.
+
+
+## Project
+Repository: https://github.com/w1899222-droid/JpBiggestprogram
+Support: https://t.me/jp_network
