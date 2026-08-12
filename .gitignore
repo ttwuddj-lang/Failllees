@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+log.txt
+logs/
+data/
+node_modules/
+wordseek/.env
+/db_backups/
+/logs/
+*.dump
+db_backups/
