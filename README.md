@@ -1,124 +1,128 @@
-# Unified AloneX + AI Chat + WordSeek
 
-This repository combines the three uploaded codebases into one deployable project.
+<h2 align="center">
+    𖢵 ᴀʅσηҽ χ мυѕι¢ 𖢵
 
-## What is integrated
+★ 𝙷𝙴𝚁𝙾𝙺𝚄 + 𝚅𝙿𝚂 ★
+</h2>
 
-- **AloneX** remains the main Pyrogram music/voice-chat bot.
-- **Aichatbiit AI chat** is integrated as native Pyrogram handlers:
-  - `/ai <message>`
-  - `/ask <message>`
-  - In groups, normal text is answered only when replying to the bot.
-- **WordSeek** remains its original Bun/TypeScript service and uses the **same `BOT_TOKEN`**.
-- The original Aichatbiit source is preserved under `legacy/Aichatbiit/`.
-
-## Important architecture note
-
-AloneX uses Pyrogram/MTProto while WordSeek uses grammY/Telegram Bot API. They are separate client runtimes but are configured with the same bot token. This avoids running two Bot API `getUpdates` consumers. If your deployment/provider rejects simultaneous MTProto + Bot API use for the same bot, WordSeek must be ported into the Pyrogram layer or run with a second bot token.
-
-The Aichatbiit original `python-telegram-bot` polling loop is **not started**; its AI logic was ported to `AloneX/plugins/ai_chat.py` so it does not create a second Bot API polling consumer.
-
-## Setup
-
-1. Copy `.env.example` to `.env`.
-2. Fill:
-   - `BOT_TOKEN`
-   - `API_ID`
-   - `API_HASH`
-   - `MONGO_URL`
-   - `LOGGER_ID`
-   - `OWNER_ID`
-   - `SESSION`
-   - `GROQ_API_KEY`
-   - WordSeek `DATABASE_URL`, `REDIS_URI`, `DAILY_WORDLE_SECRET`
-3. Install Python requirements:
-   `pip install -r requirements.txt`
-4. Install Bun dependencies:
-   `cd wordseek && bun install && cd ..`
-5. Start everything:
-   `bash start-all.sh`
-
-## Docker
-
-```bash
-cp .env.example .env
-docker compose up -d --build
-```
-
-For Docker, use these database values in `.env`:
-- `DATABASE_URL=postgresql://postgres:postgres@postgres:5432/wordseek`
-- `REDIS_URI=redis://redis:6379`
-
-## Termux / VPS
-
-The project expects Python 3, Bun, FFmpeg and the services required by the original projects. A VPS is recommended for the music/voice features.
-
-## Files
-
-- `AloneX/` - original AloneX music bot
-- `config.py` - AloneX configuration
-- `wordseek/` - original WordSeek application
-- `legacy/Aichatbiit/` - original Aichatbiit source
-- `AloneX/plugins/ai_chat.py` - integrated AI feature
-- `.env.example` - combined environment template
-- `start-all.sh` - starts both bot runtimes
-- `docker-compose.yml` - PostgreSQL + Redis + combined bot
-
-## Security
-
-Do not commit `.env`, bot tokens, API keys, database passwords or Telegram session strings.
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=ㅤ+𝚆𝙴𝙻𝙲𝙾𝙼𝙴+𝚃𝙾+𝙰𝙻𝙾𝙽𝙴+𝙼𝚄𝚂𝙸𝙲+𝚁𝙴𝙿𝙾+;ㅤ+𝚃𝙷𝙸𝚂+𝙸𝚂+𝙰+𝙰𝙳𝚅𝙰𝙽𝙲𝙴+𝙼𝚄𝚂𝙸𝙲+𝙱𝙾𝚃;𝙿𝙾𝚆𝙴𝚁𝙴𝙳+𝙱𝚈+☞+𝗧𝗛𝗘+𝗧𝗘𝗔𝗠+𝗔𝗟𝗢𝗡𝗘)](https://github.com/TeamAloneOp)
 
 
-## Added Mini-Games
+<b>Telegram Group Calls Streaming Bot</b><br>
+Supports YouTube, Spotify, Resso, Apple Music, SoundCloud and M3U8 links.
 
-The combined bot now includes: `/games`, `/quiz`, `/trivia`, `/ttt`, `/rps`, `/number`, `/guess`, `/hangman`, `/letter`, `/memory`, `/memoryanswer`, `/dice`, and `/coin`.
-Game state is in-memory and resets when the bot restarts.
+<a href="https://github.com/TeamAloneOp/AloneX/stargazers">
+    <img src="https://img.shields.io/github/stars/TeamAloneOp/AloneX?color=blueviolet&logo=github&logoColor=black&style=for-the-badge" alt="Stars"/>
+</a>
+<a href="https://github.com/TeamAloneOp/AloneX/network/members">
+    <img src="https://img.shields.io/github/forks/TeamAloneOp/AloneX?color=blueviolet&logo=github&logoColor=black&style=for-the-badge" alt="Forks"/>
+</a>
+<a href="https://github.com/TeamAloneOp/AloneX/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"/>
+</a>
+<a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/Written%20in-Python-blue?style=for-the-badge&logo=python" alt="Python"/>
+</a>
 
-## UNO
 
-Added multiplayer UNO commands: `/uno`, `/unojoin`, `/unoleave`, `/unostart`, `/unoplay`, `/unodraw`, `/unocolor`, `/unostatus`.
+<p align="center">
+  <img src="https://litter.catbox.moe/v97ciy.jpg">
+</p>
 
-## UNO Card Stickers
 
-UNO cards are bundled as WebP sticker-style assets under `assets/uno_stickers/`. Played and drawn cards are sent as stickers with a text fallback.
+**𝘿𝙀𝙈𝙊 𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [˹ 𝞚𝙡𝞸𝞰𝞮 ✗ 𝙈𝙪𝙨𝙞𝙘™ [ 𝐍ᴏ 𝐀ᴅs ] 🥀­­­­­­­­­­­­­  ](https://t.me/AlonePvtBot)**
 
-## UNO Screenshot-Style UI
 
-UNO now renders a game-board image showing the top card and hand, with inline card-choice buttons and a Draw button. This is designed to resemble the supplied UNO bot screenshot.
 
-## Word Chain
+<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=⚠️𝗙𝗢𝗥𝗞+𝗔𝗹𝗼𝗻𝗲𝗫+𝗥𝗘𝗣𝗢+𝗕𝗘𝗙𝗢𝗥𝗘+𝗗𝗘𝗣𝗟𝗢𝗬⚠️">
 
-Added an integrated Word Chain game adapted for the existing Pyrogram bot. The supplied on9wordchainbot source is preserved under `legacy/on9wordchainbot/`; it is not started as a second Telegram bot. Commands: `/wordchain`, `/wcjoin`, `/wcleave`, `/wcstart`, `/wcstatus`, `/wcstop`. Players then send 4–6 letter English words directly in the group; each word must start with the last letter of the previous word and cannot be reused. The bundled dictionary is built from the existing WordSeek common 4/5/6-letter lists.
 
-## Persistent Database System
+AloneXMusic lets you stream high-quality and low-latency audio and video playback into telegram group video chats.<br>
+Built with Python, Pyrogram, and Py-TgCalls, it’s optimized for reliability and easy deployment on Heroku, VPS, or Docker.
+</div>
 
-A dedicated `AppDatabase` layer has been added for data that should survive code/file updates:
+<hr>
 
-- PostgreSQL-backed `unified_users`
-- `unified_game_stats`
-- `unified_settings`
-- automatic table migration on startup
-- `/mystats` for persistent game statistics
-- `scripts/backup-db.sh` and `scripts/restore-db.sh`
+<h2>🔥 Features</h2>
 
-Set `UNIFIED_DATABASE_URL` to a persistent PostgreSQL database. It can use the same PostgreSQL server/database as WordSeek because all unified tables are prefixed with `unified_`.
+- 🎧 Stream low-latency audio in real time to <b>Telegram group video chats</b>
+- 🌐 Supports multiple platforms like <b>YouTube, Spotify, Apple Music, SoundCloud</b>
+- ⚡ Advanced queue management with auto-play
+- ⚙️ Easy deployment — works on Local, VPS, or Heroku
+- ❤️ Built with Python
+<hr>
 
-### Important deployment rule
+<h2>☁️ Manual Deployment</h2>
 
-**Do not keep your production database inside the source ZIP/repository.** Put PostgreSQL on a persistent volume/service (Railway PostgreSQL, Supabase, Neon, a VPS volume, or Docker's named volume). You can then replace/update the bot source without deleting user data.
+<h3 align="center">
+    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
 
-For Docker, the included `postgres` service uses a named volume (`wordseek_pg`), so recreating the bot container does not delete the PostgreSQL data.
+<h3> 𝗛𝗘𝗥𝗢𝗞𝗨 𝗗𝗘𝗣𝗟𝗢𝗬𝗠𝗘𝗡𝗧 𝗕𝗨𝗧𝗧𝗢𝗡 </h3>
+</h3>
 
-Before updating source files, make a backup:
+[![Deploy To Heroku](https://graph.org/file/826b0a2fc82db8328a113.png)](https://dashboard.heroku.com/new?template=https://github.com/TeamAloneOp/AloneX)
 
-```bash
-./scripts/backup-db.sh
-```
+<h2 align="center">
 
-After a failed update, restore if necessary:
+🔴「 𝗜𝗙 𝗔𝗡𝗬 𝗘𝗥𝗥𝗢𝗥 𝗧𝗛𝗘𝗡 𝗦𝗘𝗡𝗗 𝗦𝗦 𝗧𝗢 𝗗𝗠 」🔴
+[![ALONE](https://te.legra.ph/file/fa42213a5129d4a26dd3d.jpg)](https://t.me/ForRealAlone)
+</p>
+<h3 align="center">
+    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʟᴏᴄᴀʟ ʜᴏsᴛ/ ᴠᴘs 」─
+</h3>
 
-```bash
-./scripts/restore-db.sh db_backups/unified_YYYYMMDD_HHMMSS.dump
-```
+### 🔧 Quick Setup
 
-**Note:** active in-memory game rounds (for example an UNO round currently being played) still reset if the process crashes/restarts. Persistent user/settings/stats data survives. Making every active game resumable would require a second persistence pass for each game's state.
+1. **Upgrade & Update:**
+   ```bash
+   sudo apt-get update && sudo apt-get upgrade -y
+   ```
+
+2. **Install Required Packages:**
+   ```bash
+   sudo apt-get install python3-pip ffmpeg -y
+   ```
+3. **Setting up PIP**
+   ```bash
+   sudo pip3 install -U pip
+   ```
+4. **Installing Node**
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && source ~/.bashrc && nvm install v18
+   ```
+5. **Clone the Repository**
+   ```bash
+   git clone https://github.com/TeamAloneOp/AloneX && cd AloneX
+   ```
+6. **Install Requirements**
+   ```bash
+   pip3 install -U -r requirements.txt
+   ```
+7. **Installing tmux**
+    ```bash
+    sudo apt install tmux -y && tmux
+   ```
+8. **Editing Vars:**
+   ```bash
+   bash setup
+   ```
+9. **Run the Bot**
+    ```bash
+    bash start
+    ```
+
+---
+━━━━━━━━━━━━━━━━━━━━
+
+<h3 align="center">
+    ─「 sᴜᴩᴩᴏʀᴛ 」─
+</h3>
+
+<p align="center">
+<a href="https://telegram.me/AloneBotSupport"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+</p>
+
+<p align="center">
+<a href="https://telegram.me/AloneUpdates"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
+</p>
+
